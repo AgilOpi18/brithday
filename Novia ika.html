@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Birthday Luxury ✨</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+ --pink:#ffb5d5;
+ --white:#fff;
+ --gold:#ffe0a0;
+}
+
+body{
+ font-family:'Segoe UI',Arial,sans-serif;
+ color:white;
+ background:#17132e;
+ overflow:hidden;
+ min-height:100vh;
+}
+
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ background:
+ radial-gradient(ellipse at 15% 15%,#793d86 0%,transparent 45%),
+ radial-gradient(ellipse at 85% 80%,#743a78 0%,transparent 45%),
+ linear-gradient(135deg,#17132e,#30204e,#1b1838);
+ z-index:-2;
+}
+
+#stars{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ z-index:-1;
+}
+
+.star{
+ position:absolute;
+ color:#ffe9ba;
+ animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+ from{opacity:.25;transform:scale(.7)}
+ to{opacity:1;transform:scale(1.2)}
+}
+
+.slide{
+ display:none;
+ position:absolute;
+ inset:0;
+ min-height:100vh;
+ padding:35px 20px 100px;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ overflow-y:auto;
+}
+
+.slide.active{
+ display:flex;
+ animation:slideIn .8s cubic-bezier(.2,.7,.2,1);
+}
+
+@keyframes slideIn{
+ from{opacity:0;transform:translateY(35px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.eyebrow{
+ font-size:12px;
+ letter-spacing:5px;
+ color:var(--gold);
+ font-weight:bold;
+ margin-bottom:15px;
+}
+
+h1{
+ font-family:Georgia,serif;
+ font-size:clamp(40px,8vw,72px);
+ line-height:1.2;
+ color:white;
+ margin:15px 0;
+ text-shadow:0 3px 20px #0008;
+}
+
+h2{
+ font-family:Georgia,serif;
+ color:var(--pink);
+ margin:15px;
+ font-size:28px;
+}
+
+p{
+ color:#fff;
+ font-size:16px;
+ line-height:1.9;
+ max-width:550px;
+}
+
+.photo{
+ width:245px;
+ height:245px;
+ object-fit:cover;
+ border-radius:50%;
+ border:6px solid #ffe0bd;
+ box-shadow:0 0 0 9px #ffffff20,0 0 40px #ff9fc7;
+ animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+ 50%{transform:translateY(-12px)}
+}
+
+.big{
+ font-size:90px;
+ margin:20px;
+ animation:float 3s infinite;
+}
+
+.card{
+ width:min(550px,95%);
+ padding:30px;
+ margin:20px auto;
+ border:1px solid #ffffff65;
+ border-radius:24px;
+ background:#ffffff17;
+ box-shadow:0 15px 40px #09051c55;
+}
+
+.gallery{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:12px;
+ margin:25px 0;
+}
+
+.gallery img{
+ width:clamp(90px,24vw,140px);
+ height:165px;
+ object-fit:cover;
+ border-radius:15px;
+ border:3px solid #ffe0bd;
+ box-shadow:0 8px 20px #0005;
+ transition:.4s;
+}
+
+.gallery img:hover{
+ transform:translateY(-10px) rotate(3deg);
+}
+
+.letter{
+ white-space:pre-line;
+ line-height:2.1;
+ color:white;
+ font-size:16px;
+}
+
+button{
+ border:1px solid #ffe0bd;
+ border-radius:30px;
+ background:linear-gradient(135deg,#bc709e,#805b9f);
+ color:white;
+ padding:14px 27px;
+ margin:10px;
+ font-weight:bold;
+ font-size:14px;
+ cursor:pointer;
+ transition:.3s;
+}
+
+button:hover{
+ transform:translateY(-4px);
+ background:linear-gradient(135deg,#e49cc2,#aa7ac4);
+ box-shadow:0 8px 25px #ffb5d555;
+}
+
+.nav{
+ position:fixed;
+ bottom:14px;
+ left:0;
+ right:0;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ z-index:10;
+}
+
+#counter{
+ color:#ffe0bd;
+ font-size:14px;
+ margin:0 12px;
+ font-weight:bold;
+}
+
+#progress{
+ position:fixed;
+ top:0;
+ left:0;
+ height:4px;
+ background:linear-gradient(90deg,#ffb5d5,#ffe0a0);
+ width:14.28%;
+ z-index:20;
+ transition:.5s;
+}
+
+.effect{
+ position:fixed;
+ pointer-events:none;
+ z-index:30;
+ animation:fly 1.6s forwards;
+}
+
+@keyframes fly{
+ to{
+  transform:translateY(-180px) scale(1.8) rotate(40deg);
+  opacity:0;
+ }
+}
+
+@media(max-width:500px){
+ .photo{width:195px;height:195px}
+ .card{padding:20px}
+ .gallery img{height:125px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+<div id="progress"></div>
+
+<audio id="music" src="kombor.mp3" loop></audio>
+
+<!-- SLIDE 1 -->
+<section class="slide active">
+ <div class="eyebrow">A SPECIAL DAY FOR YOU</div>
+ <h1>Something<br>Beautiful Awaits</h1>
+ <div class="big">💌</div>
+ <p>Ada kejutan kecil yang sudah disiapkan khusus untukmu.</p>
+ <button onclick="start()">OPEN YOUR SURPRISE ✨</button>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide">
+ <div class="eyebrow">TODAY IS YOUR DAY</div>
+ <h1>Happy Birthday</h1>
+ <div class="big">🎂</div>
+ <h2>Selamat Ulang Tahun Sayang❤️</h2>
+ <p>Semoga hari istimewa ini menjadi awal dari banyak kebahagiaan dan cerita indah.</p>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide">
+ <div class="eyebrow">THE MOST SPECIAL PERSON</div>
+ <img class="photo" src="foto4.jpg">
+ <h1>Novia Ika Alferi</h1>
+ <p>Seseorang yang begitu istimewa dan layak mendapatkan semua hal terbaik.</p>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide">
+ <div class="eyebrow">A COLLECTION OF MEMORIES</div>
+ <h1>Beautiful Memories</h1>
+ <div class="gallery">
+  <img src="foto1.jpg">
+  <img src="foto2.jpg">
+  <img src="foto3.jpg">
+  <img src="foto5.jpg">
+  <img src="foto6.jpg">
+ </div>
+ <p>Kenangan sederhana yang akan selalu punya tempat istimewa. ❤️</p>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide">
+ <div class="eyebrow">A LETTER FROM THE HEART</div>
+ <h1>For You ❤️</h1>
+ <div class="card">
+  <div class="letter">Untuk seseorang yang istimewa,
+
+Selamat ulang tahun!
+
+Semoga setiap langkahmu selalu
+ditemani kebahagiaan.
+
+Semoga semua impian yang kamu
+simpan bisa menjadi kenyataan.
+
+Jangan pernah kehilangan senyuman.
+Dunia masih punya banyak hal indah
+yang menunggumu.
+
+Terima kasih sudah menjadi
+seseorang yang begitu berharga.
+
+With Love ❤️</div>
+ </div>
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide">
+ <div class="eyebrow">CLOSE YOUR EYES AND MAKE A WISH</div>
+ <h1>Make A Wish</h1>
+ <div class="big" id="cake">🎂</div>
+ <h2>Your Wish Matters</h2>
+ <p>Pejamkan mata, pikirkan satu harapan terbaikmu.</p>
+ <button onclick="blow()">🌬️ BLOW THE CANDLE</button>
+ <h2 id="wish"></h2>
+</section>
+
+<!-- SLIDE 7 -->
+<section class="slide">
+ <div class="eyebrow">ONE LAST MESSAGE</div>
+ <h1>Stay Wonderful</h1>
+ <div class="big">🎆❤️🎆</div>
+ <div class="card">
+  <h2>Happy Birthday Once Again!</h2>
+  <p>Semoga hidupmu selalu dipenuhi cinta, kesehatan, keberuntungan, dan kebahagiaan.</p>
+  <br>
+  <h2>With Love, Always.</h2>
+ </div>
+ <button onclick="restart()">↻ REPLAY SURPRISE</button>
+</section>
+
+<div class="nav">
+ <button onclick="previous()">❮ BACK</button>
+ <span id="counter">1 / 7</span>
+ <button onclick="next()">NEXT ❯</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll(".slide");
+const music=document.getElementById("music");
+let current=0;
+
+function showSlide(n){
+ if(n<0 || n>=slides.length)return;
+
+ slides[current].classList.remove("active");
+ current=n;
+ slides[current].classList.add("active");
+
+ document.getElementById("counter").textContent=
+ (current+1)+" / "+slides.length;
+
+ document.getElementById("progress").style.width=
+ ((current+1)/slides.length*100)+"%";
+
+ if(current===6)celebrate();
+}
+
+function start(){
+ music.play().catch(()=>{});
+ showSlide(1);
+}
+
+function next(){showSlide(current+1)}
+function previous(){showSlide(current-1)}
+function restart(){showSlide(0)}
+
+function blow(){
+ document.getElementById("cake").textContent="✨🎂✨";
+ document.getElementById("wish").textContent=
+ "Semoga semua harapanmu terwujud ❤️";
+ confetti();
+}
+
+function confetti(){
+ const symbols=["❤️","✨","💕","🌸","⭐","💖","🎉"];
+ for(let i=0;i<40;i++){
+  const el=document.createElement("div");
+  el.className="effect";
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.top=Math.random()*100+"vh";
+  el.style.fontSize=(18+Math.random()*20)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1700);
+ }
+}
+
+function celebrate(){
+ for(let i=0;i<5;i++){
+  setTimeout(confetti,i*450);
+ }
+}
+
+for(let i=0;i<90;i++){
+ const s=document.createElement("span");
+ s.className="star";
+ s.textContent="✦";
+ s.style.left=Math.random()*100+"%";
+ s.style.top=Math.random()*100+"%";
+ s.style.fontSize=(6+Math.random()*12)+"px";
+ s.style.animationDelay=Math.random()*3+"s";
+ document.getElementById("stars").appendChild(s);
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowRight")next();
+ if(e.key==="ArrowLeft")previous();
+});
+</script>
+
+</body>
+</html>
